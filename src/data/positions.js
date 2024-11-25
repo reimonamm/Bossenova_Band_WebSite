@@ -8,6 +8,6 @@ export const positions = [
     //position 1
     {
         position: [0, 20, 45],
-        target: [0, 0,-45],
+        target: [0, 0, -45],
     },
 ];
