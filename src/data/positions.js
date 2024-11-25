@@ -7,7 +7,7 @@ export const positions = [
     },
     //position 1
     {
-        position: [1.09, 21.85, 38.96],
-        target: [0, -0.26,-0.96],
+        position: [0, 20, 45],
+        target: [0, 0,-45],
     },
 ];
