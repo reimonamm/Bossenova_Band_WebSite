@@ -7,37 +7,64 @@ html, body, #root {
 
 canvas {
     display: block;
-    z-index: 1; /* Ensure the canvas is on top */
+    z-index: 1; /* Ensure the canvas is rendered but below other elements */
 }
 
-.button-container {
+.logo-container {
+    position: fixed;
+    top: 20%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 10; /* Ensure the logo stays above the canvas */
+}
+
+
+.logo {
+    width: 600px;
+    height: auto;
+    opacity: 1;
+    transition: opacity 2s ease-in-out;
+}
+
+
+/* Centering wrapper */
+.wrap {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Button styling */
+.button {
     position: absolute;
-    bottom: 10%;
+    bottom: 10%; /* Adjust placement */
     left: 50%;
     transform: translateX(-50%);
-    display: flex;
-    gap: 15px;
-    z-index: 2; /* Button container is above the canvas */
-}
+    z-index: 15; /* Ensure it stays above the canvas and other elements */
 
-.button-container button {
-    background-color: #572d03;
-    color: white;
+    width: 140px;
+    height: 45px;
+    font-family: 'Roboto', sans-serif;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 2.5px;
+    font-weight: 500;
+    color: #000;
+    background-color: #fff;
     border: none;
-    border-radius: 5px;
-    padding: 12px 20px;
-    font-size: 16px;
-    font-weight: bold;
+    border-radius: 45px;
+    box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
     cursor: pointer;
-    transition: background-color 0.3s ease;
+    outline: none;
 }
 
-.button-container button:hover {
-    background-color: #8d4d06;
-}
+.button:hover {
+    background-color: #4ea997;
+    box-shadow: 0px 15px 20px rgba(46, 229, 157, 0.4);
+    color: #fff;
 
-.button-container button:disabled {
-    background-color: #cccccc;
-    color: #666666;
-    cursor: not-allowed;
+    /* Adjust transform for only upward movement */
+    transform: translate(-50%, -7px); /* Keep horizontal centering intact */
 }

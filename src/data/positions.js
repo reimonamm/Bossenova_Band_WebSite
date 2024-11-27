@@ -2,7 +2,7 @@ export const positions = [
 
     //default position
     {
-        position: [0, 200, 400],
+        position: [0, 100, 100],
         target: [0, 0, 0],
     },
     //position 1

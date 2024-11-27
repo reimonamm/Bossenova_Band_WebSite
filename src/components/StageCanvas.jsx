@@ -1,8 +1,9 @@
 import React, { useRef, useState, useEffect } from 'react';
 import { Canvas } from '@react-three/fiber';
-import { PerspectiveCamera, useGLTF, Cloud, Stars } from '@react-three/drei';
-import { Bloom, DepthOfField, EffectComposer, Noise, Vignette } from '@react-three/postprocessing';
+import { PerspectiveCamera, useGLTF, } from '@react-three/drei';
+import { DepthOfField, EffectComposer, Vignette } from '@react-three/postprocessing';
 import CameraControls from './CameraControls';
+import gsap from 'gsap';
 
 
 const StageModel = () => {
@@ -13,7 +14,16 @@ const StageModel = () => {
 const StageCanvas = ({ positions }) => {
     const cameraRef = useRef();
     const [currentIndex, setCurrentIndex] = useState(0);
-    const [isBlurred, setIsBlurred] = useState(true);
+    const [isButtonVisible, setIsButtonVisible] = useState(true);
+
+    const [effectSettings, setEffectSettings] = useState({
+        darkness: 220,
+        focusDistance: 1,
+        focalLength: 0.1,
+        bokehScale: 5,
+    });
+
+    const [logoVisible, setLogoVisible] = useState(true);
 
     useEffect(() => {
         if (cameraRef.current) {
@@ -24,21 +34,65 @@ const StageCanvas = ({ positions }) => {
             camera.near = 1;
             camera.far = 5000;
             camera.updateProjectionMatrix();
-
-            //Blur
-            if (currentIndex === 0){
-                setIsBlurred(true);
-            } else{
-                setIsBlurred(false);
-            }
-
         }
     }, [currentIndex, positions]);
 
 
+    //Effects Animation
+    const handleButtonClick = () => {
+        animateEffects();  // Handles GSAP animation
+        hideUI();          // Handles UI state changes
+        moveCamera(1);     // Updates camera index to the next position
+    };
+
+// 1. Animation logic
+    const animateEffects = () => {
+        const targetValues = {
+            darkness: effectSettings.darkness,
+            focusDistance: effectSettings.focusDistance,
+        };
+
+        gsap.to(targetValues, {
+            duration: 2,
+            darkness: 25,
+            focusDistance: 10000,
+            focalLength: 0,
+            bokehScale: 0,
+            onUpdate: function () {
+                setEffectSettings((prev) => ({
+                    ...prev,
+                    darkness: targetValues.darkness,
+                    focusDistance: targetValues.focusDistance,
+                    focalLength: targetValues.focalLength,
+                    bokehScale: targetValues.bokehScale,
+                }));
+            },
+            onComplete: () => {
+                console.log("Effects animation complete");
+            },
+        });
+    };
+
+// 2. UI state changes
+    const hideUI = () => {
+        setLogoVisible(false);
+        setIsButtonVisible(false);
+    };
+
+// 3. Camera movement
+    const moveCamera = (index) => {
+        setCurrentIndex(index);
+    };
+
     return (
         <>
-            <Canvas style={{ background: "#000" }}>
+            {logoVisible && (
+                <div className="logo-container">
+                    <img src="/BossenovaLogo.svg" alt="Bossenova Logo" className="logo"/>
+                </div>
+            )}
+
+            <Canvas style={{background: "#000"}}>
                 <PerspectiveCamera
                     ref={cameraRef}
                     makeDefault
@@ -51,20 +105,23 @@ const StageCanvas = ({ positions }) => {
                     currentIndex={currentIndex}
                 />
 
-                <StageModel />
+                <StageModel/>
 
                 {/* Apply post-processing effects */}
                 <EffectComposer>
-                    <DepthOfField focusDistance={1} focalLength={0.1} bokehScale={5} height={480} />
-                    <Vignette eskil={true} offset={0.1} darkness={225} />
+                    <DepthOfField focusDistance={effectSettings.focusDistance} focalLength={effectSettings.focalLength}
+                                  bokehScale={effectSettings.bokehScale} height={480}/>
+                    <Vignette eskil={true} offset={0.1} darkness={effectSettings.darkness}/>
                 </EffectComposer>
 
             </Canvas>
 
-            <div className="button-container">
-                <button onClick={() => setCurrentIndex(1)}>
-                    Sisene veebilehele
-                </button>
+            <div className="wrap">
+                {isButtonVisible && (
+                    <button className="button" onClick={handleButtonClick}>
+                        Sisene veebilehele
+                    </button>
+                )}
             </div>
         </>
     );

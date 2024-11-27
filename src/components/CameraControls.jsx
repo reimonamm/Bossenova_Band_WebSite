@@ -5,7 +5,7 @@ const CameraControls = ({cameraRef, positions, currentIndex}) => {
     const { position, target } = useSpring({
         position: positions[currentIndex]?.position || [0, 200, 400],
         target: positions[currentIndex]?.target || [0, 0, 0],
-        config: { mass: 1, tension: 55, friction: 65},
+        config: { mass: 1, tension: 70, friction: 65},
     });
 
     useFrame(() =>{
