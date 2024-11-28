@@ -1,9 +1,10 @@
 import React, { useRef, useState, useEffect } from 'react';
 import { Canvas } from '@react-three/fiber';
-import { PerspectiveCamera, useGLTF, } from '@react-three/drei';
+import {OrbitControls, PerspectiveCamera, useGLTF,} from '@react-three/drei';
 import { DepthOfField, EffectComposer, Vignette } from '@react-three/postprocessing';
 import CameraControls from './CameraControls';
 import gsap from 'gsap';
+import MenuSection from "../sections/MenuSection.jsx";
 
 
 const StageModel = () => {
@@ -15,6 +16,16 @@ const StageCanvas = ({ positions }) => {
     const cameraRef = useRef();
     const [currentIndex, setCurrentIndex] = useState(0);
     const [isButtonVisible, setIsButtonVisible] = useState(true);
+    const [isMenuVisible, setIsMenuVisible] = useState(false);
+    const orbitControlsRef = useRef();
+    const [movementType, setMovementType] = useState("default");
+
+    const handleCameraStop = () => {
+        const position = cameraRef.current.position;
+        const target = orbitControlsRef.current.target;
+        console.log("Camera Position: ", position);
+        console.log("Camera Target: ", target);
+    }
 
     const [effectSettings, setEffectSettings] = useState({
         darkness: 220,
@@ -69,6 +80,10 @@ const StageCanvas = ({ positions }) => {
             },
             onComplete: () => {
                 console.log("Effects animation complete");
+                setTimeout(() =>{
+                    setIsMenuVisible(true);
+                },1700);
+
             },
         });
     };
@@ -81,6 +96,12 @@ const StageCanvas = ({ positions }) => {
 
 // 3. Camera movement
     const moveCamera = (index) => {
+        // Update movementType based on the target position
+        if (index === 1 && currentIndex === 0) {
+            setMovementType('default'); // Use default config for 0 → 1
+        } else {
+            setMovementType('fast'); // Use fast config for other movements
+        }
         setCurrentIndex(index);
     };
 
@@ -93,6 +114,11 @@ const StageCanvas = ({ positions }) => {
             )}
 
             <Canvas style={{background: "#000"}}>
+                <OrbitControls
+                    ref={orbitControlsRef}
+                    args={[cameraRef.current]} // Explicitly attach OrbitControls to your PerspectiveCamera
+                    onEnd={handleCameraStop} // Log the camera position and target when movement ends
+                />
                 <PerspectiveCamera
                     ref={cameraRef}
                     makeDefault
@@ -103,6 +129,7 @@ const StageCanvas = ({ positions }) => {
                     cameraRef={cameraRef}
                     positions={positions}
                     currentIndex={currentIndex}
+                    movementType={movementType}
                 />
 
                 <StageModel/>
@@ -123,6 +150,15 @@ const StageCanvas = ({ positions }) => {
                     </button>
                 )}
             </div>
+
+            {/* Menu Section */}
+            {isMenuVisible && (
+                <MenuSection
+                    moveCamera={moveCamera}
+                    positions={positions}
+                    currentIndex={currentIndex}
+                />
+            )}
         </>
     );
 };
