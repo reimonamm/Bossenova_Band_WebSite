@@ -32,10 +32,33 @@ export const positions = [
 
     //5. Tellijale
     {
-        position: [-11, 15, -5.6],
-        target: [-11, 13.5,-5.5],
+        position: [11, 9, 2],
+        target: [15, 9, 2],
     },
 
+    //6. Tagasiside
+    {
+        position: [5, 21, -5],
+        target: [13, 20, -4.7],
+    },
+
+    //7. Kontakt
+    {
+        position: [-9, 19.5, -4],
+        target: [-12, 19.5, -4],
+    },
+
+    //8. Blogi
+    {
+        position: [5, 21, -5],
+        target: [13, 20, -4.7],
+    },
+
+    //9. Esinemised
+    {
+        position: [-14, 7.5, 6.2],
+        target: [-18, 6.7,6.4],
+    },
 
 
 ];

@@ -7,6 +7,8 @@ import gsap from 'gsap';
 import MenuSection from "../sections/MenuSection.jsx";
 
 
+
+
 const StageModel = () => {
     const gltf = useGLTF("/src/assets/models/stage_final.glb", true); // Path to Draco decoder
     return <primitive object={gltf.scene} scale={1} />;
@@ -17,6 +19,8 @@ const StageCanvas = ({ positions }) => {
     const [currentIndex, setCurrentIndex] = useState(0);
     const [isButtonVisible, setIsButtonVisible] = useState(true);
     const [isMenuVisible, setIsMenuVisible] = useState(false);
+
+
     const orbitControlsRef = useRef();
     const [movementType, setMovementType] = useState("default");
 
@@ -131,6 +135,7 @@ const StageCanvas = ({ positions }) => {
                     currentIndex={currentIndex}
                     movementType={movementType}
                 />
+
 
                 <StageModel/>
 

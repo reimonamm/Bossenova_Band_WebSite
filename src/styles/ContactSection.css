@@ -1,0 +1,155 @@
+/* General Styles */
+body {
+    margin: 0;
+    padding: 0;
+    color: #4e5e72;
+    text-align: center;
+    font-family: monospace;
+}
+
+/* Contact Section Container */
+.contact-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: transparent;
+    z-index: 10;
+    pointer-events: auto;
+}
+
+/* Letter Box Styling */
+/* Letter Box Styling with Smokey Effect */
+.letter {
+    position: absolute; /* Absolute positioning to allow fine-tuning */
+    top: 35%;
+    left: 50%; /* Start horizontally centered */
+    transform: translate(-50%, -30%); /* Adjust positioning to center and move up slightly */
+    width: 35rem;
+    background: radial-gradient(
+            circle,
+            rgba(252, 252, 235, 1) 60%, /* Light paper color in the center */
+            rgba(242, 242, 220, 1) 86%, /* Slightly darker edges */
+            rgba(80, 80, 80, 0.3) 100% /* Smokey dark edges */
+    );
+    border-radius: 1rem;
+    box-shadow:
+            0 4px 6px rgba(0, 0, 0, 0.1), /* Standard shadow */
+            inset 0 0 30px rgba(50, 50, 50, 0.3), /* Inner shadow for depth */
+            -20px -20px 40px rgba(80, 80, 80, 0.2); /* External smokey shadow on one side */
+    padding: 2rem;
+    color: #4e5e72;
+    border: 1px solid #e6e1be;
+    text-align: left;
+    position: relative; /* For pseudo-elements */
+}
+
+/* Smokey Burned Corners Effect */
+.letter::before, .letter::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none; /* Ensure it's not interactive */
+    background: radial-gradient(
+            circle at 20% 20%,
+            rgba(50, 50, 50, 0.2),
+            rgba(0, 0, 0, 0) 70%
+    ), /* Top left burn */
+    radial-gradient(
+            circle at 80% 80%,
+            rgba(50, 50, 50, 0.2),
+            rgba(0, 0, 0, 0) 70%
+    ); /* Bottom right burn */
+    mix-blend-mode: multiply; /* Make it blend naturally with the background */
+    opacity: 0.8; /* Control visibility */
+}
+
+/* Style the header inside the letter */
+.letter h1 {
+    font-size: 2rem;
+    font-family: "Dancing Script", cursive;
+    margin-bottom: 1.5rem;
+    text-align: center;
+    color: #4e5e72;
+}
+
+/* Message Textarea Styling */
+.message-area {
+    width: 100%;
+    height: 8rem;
+    padding: 10px;
+    margin-bottom: 1.5rem;
+    border: none;
+    border-bottom: 1px solid #e6e1be;
+    background-color: transparent;
+    background-image: linear-gradient(to bottom, rgba(242, 242, 220, 0.8) 1px, transparent 1px);
+    background-size: 100% 2rem; /* Lines every 2rem */
+    resize: none;
+    font-size: 1rem;
+    font-family: inherit;
+    outline: none;
+    color: #4e5e72;
+    line-height: 1.5rem;
+}
+
+.message-area:focus {
+    border-bottom: 1px solid #e6e1be;
+}
+
+/* Placeholder Textarea Styling */
+.placeholder-textarea {
+    width: 100%;
+    height: 1rem;
+    padding: 5px;
+    margin-bottom: 1.5rem;
+    border: none;
+    border-bottom: 1px solid #e6e1be;
+    background-color: transparent;
+    background-image: linear-gradient(to bottom, rgba(242, 242, 220, 0.8) 1px, transparent 1px);
+    background-size: 100% 1.5rem; /* Lines every 1.5rem */
+    font-size: 1rem;
+    font-family: inherit;
+    outline: none;
+    color: #4e5e72;
+    line-height: 1.5rem;
+}
+
+.placeholder-textarea:focus {
+    border-bottom: 1px solid #4e5e72;
+}
+
+/* Button Styling */
+button {
+    width: 100%;
+    padding: 0.75rem;
+    margin-top: 1rem;
+    background-color: #4e5e72;
+    color: white;
+    font-size: 1rem;
+    font-family: inherit;
+    border: none;
+    border-radius: 0.25rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+button:hover {
+    background-color: #6c7b8b;
+}
+
+/* Result Message Styling */
+.result-message {
+    opacity: 0;
+    color: #4e5e72;
+    font-size: 1.3rem;
+    margin-top: 20px;
+    transition: opacity 5s;
+}
+
+.contact-container.sent .result-message {
+    opacity: 1;
+}
