@@ -1,16 +1,17 @@
-import React, { useState } from "react";
-import "../styles/ContactSection.css";
+import React, {useEffect, useState} from "react";
 
 const ContactSection = () => {
+
+    //CSS Lazy Loading
+    useEffect(() => {
+        import('../styles/ContactSection.css')
+            .catch((error) => console.error('Failed to load CSS:', error));
+    }, []);
+
     const [isSent, setIsSent] = useState(false);
     const [message, setMessage] = useState("");
     const [name, setName] = useState("");
     const [email, setEmail] = useState("");
-
-    const handleInputChange  =useCallback(
-        debounce((setter, value) => setter(value), 300),
-        []
-    );
 
     const handleSend = (e) => {
         e.preventDefault();
@@ -18,7 +19,7 @@ const ContactSection = () => {
         setMessage("");
         setName("");
         setEmail("");
-        setTimeout(() => setIsSent(false), 5000); // Reset after animation
+        setTimeout(() => setIsSent(false), 5000);
     };
 
     const handleMessageChange = (e) => setMessage(e.target.value);

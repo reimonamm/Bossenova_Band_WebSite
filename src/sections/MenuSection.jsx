@@ -1,75 +1,95 @@
-import React, { useState, useEffect } from 'react';
+import React, {useState, lazy, Suspense, useCallback, useMemo} from 'react';
 import '../styles/MenuSection.css';
-import FeedbackSection from "./FeedbackSection.jsx";
-import ContactSection from "./ContactSection.jsx";
 
-const MenuSection = ({ scale = 0.8, moveCamera, positions, currentIndex }) =>{
-    const style = {
+const FeedbackSection = lazy(() => import('./FeedbackSection'));
+const ContactSection = lazy(() => import('./ContactSection'));
+const AboutSection = lazy(() => import('./AboutSection'));
+
+const MenuSection = ({ scale = 0.8, moveCamera, positions }) =>{
+
+    const style = useMemo(() => ({
         transform: `translate(-50%, -50%) scale(${scale})`,
         transformOrigin: `center center`,
         position: 'absolute',
         top: '65%',
         left: '50%',
-    };
+    }), [scale]);
 
     const [showBackButton, setShowBackButton] = useState(false);
-    const [isFeedbackVisible, setIsFeedbackVisible] = useState(false);
-    const [isContactVisible, setIsContactVisible] = useState(false);
+    const [activeSection, setActiveSection] = useState(null);
 
-
-    //Camera Movement
-    const handleMoveToPosition = (targetIndex) =>{
-        if (!moveCamera || !positions) return;
-
-        moveCamera(targetIndex);
-
-        //FeedBack Section
-        if (targetIndex === 6){
-            setTimeout(() => {
-                setIsFeedbackVisible(true);
-            },2000);
-
-        } else {
-            setIsFeedbackVisible(false);
-        }
-
-        //Contact Section
-        if (targetIndex === 7){
-            setTimeout(() => {
-                setIsContactVisible(true)
-            }, 3000);
-        } else{
-            setIsContactVisible(false);
-        }
-
-        //Hide Menu
-        setTimeout(() =>{
-            const menu = document.querySelector('.menu')
-            if (menu) menu.style.display = 'none';
-        }, 1000);
-
-        //Show Back Button
-        setTimeout(() => {
-            setShowBackButton(true);
-        }, 3000);
+    const sectionMap = {
+        4: { name: "AboutSection", delay: 2000 },
+        6: { name: "FeedbackSection", delay: 2000 },
+        7: { name: "ContactSection", delay: 3000 },
     };
 
+    const renderSection = () => {
+        switch (activeSection) {
+            case "AboutSection":
+                return <AboutSection/>
+            case "FeedbackSection":
+                return <FeedbackSection />;
+            case "ContactSection":
+                return <ContactSection />;
+            default:
+                return null;
+        }
+    };
+
+    //Camera Movement
+    const handleMoveToPosition = useCallback(
+        (targetIndex) => {
+            if (!moveCamera || !positions) return;
+
+            moveCamera(targetIndex);
+
+            const sectionInfo = sectionMap[targetIndex];
+            if (sectionInfo) {
+                const { name, delay } = sectionInfo;
+                setTimeout(() => {
+                    setActiveSection(name);
+                }, delay);
+            } else {
+                setActiveSection(null);
+            }
+
+            // Hide Menu
+            setTimeout(() => {
+                const menu = document.querySelector('.menu');
+                if (menu) menu.style.display = 'none';
+            }, 1000);
+
+            // Show Back Button
+            setTimeout(() => {
+                setShowBackButton(true);
+            }, 3000);
+        },
+        [moveCamera, positions, sectionMap]
+    );
+
+    const handleMenuClick = (targetIndex) => {
+        handleMoveToPosition(targetIndex);
+    }
+
     //Back to Menu
-    const handleBackToMenu = () =>{
+    const handleBackToMenu = useCallback(() => {
         moveCamera(1);
         setShowBackButton(false);
-        setIsFeedbackVisible(false);
-        setIsContactVisible(false);
-        setTimeout(() =>{
-            const backBtn = document.querySelector('.backButton')
-            if(backBtn) backBtn.style.display = 'none';
-        }, 300);
-        setTimeout(() =>{
-            const menu = document.querySelector('.menu')
-            if (menu) menu.style.display = 'block';
-        },2000);
+        setActiveSection(null);
 
-    }
+        setTimeout(() => {
+            const backBtn = document.querySelector('.backButton');
+            if (backBtn) backBtn.style.display = 'none';
+        }, 300);
+
+        setTimeout(() => {
+            const menu = document.querySelector('.menu');
+            if (menu) menu.style.display = 'block';
+        }, 2000);
+    }, [moveCamera]);
+
+
 
 
     return (
@@ -84,12 +104,12 @@ const MenuSection = ({ scale = 0.8, moveCamera, positions, currentIndex }) =>{
                     </div>
 
                     {/*Pildid*/}
-                    <div className="btn" onClick={() => handleMoveToPosition(3)}>
+                    <div className="btn" onClick={() => handleMenuClick(3)}>
                         <img src="/Pildid.svg" style={{width: '44px', height: '44px',}} />
                     </div>
 
                     {/*Meist*/}
-                    <div className="btn" onClick={() => handleMoveToPosition(4)}>
+                    <div className="btn" onClick={() => handleMenuClick(4)}>
                         <img
                             src="/Meist.svg"
                             alt="Book icon"
@@ -98,32 +118,32 @@ const MenuSection = ({ scale = 0.8, moveCamera, positions, currentIndex }) =>{
                     </div>
 
                     {/*Tellijale*/}
-                    <div className="btn" onClick={() => handleMoveToPosition(5)}>
+                    <div className="btn" onClick={() => handleMenuClick(5)}>
                         <img src="/Tellijale.svg" style={{width: '60px', height: '60px',}}/>
                     </div>
 
                     {/*Tagasiside*/}
-                    <div className="btn" onClick={() => handleMoveToPosition(6)}>
+                    <div className="btn" onClick={() => handleMenuClick(6)}>
                         <img src="/Tagasiside.svg" style={{width: '69px', height: '69px',}}/>
                     </div>
 
                     {/*Kontakt*/}
-                    <div className="btn" onClick={() => handleMoveToPosition(7)}>
+                    <div className="btn" onClick={() => handleMenuClick(7)}>
                         <img src="/Kontakt.svg" style={{width: '64px', height: '64px',}}/>
                     </div>
 
                     {/*Blogi*/}
-                    <div className="btn" onClick={() => handleMoveToPosition(8)} >
+                    <div className="btn" onClick={() => handleMenuClick(8)} >
                         <img src="/Blogi.svg" style={{width: '60px', height: '60px',}}/>
                     </div>
 
                     {/*Esinemised*/}
-                    <div className="btn" onClick={() => handleMoveToPosition(9)}>
+                    <div className="btn" onClick={() => handleMenuClick(9)}>
                         <img src="/Esinemised.svg" style={{width: '69px', height: '69px',}}/>
                     </div>
 
                     {/*Videod*/}
-                    <div className="btn" onClick={() => handleMoveToPosition(2)}>
+                    <div className="btn" onClick={() => handleMenuClick(2)}>
                         <img src="/Videod.svg" style={{width: '48px', height: '48px',}}/>
                     </div>
 
@@ -133,7 +153,7 @@ const MenuSection = ({ scale = 0.8, moveCamera, positions, currentIndex }) =>{
             {/* Back to Menu Button */}
             {showBackButton && (
                 <button
-                    className="backButton button"
+                    className="backButton"
                     onClick={handleBackToMenu}
                 >
                     <i className="material-icons">arrow_back</i>
@@ -141,8 +161,10 @@ const MenuSection = ({ scale = 0.8, moveCamera, positions, currentIndex }) =>{
                 </button>
             )}
 
-            {isFeedbackVisible && <FeedbackSection/>}
-            {isContactVisible && <ContactSection/>}
+            <Suspense fallback={<div>Loading...</div>}>
+                {renderSection()}
+            </Suspense>
+
         </>
 
 

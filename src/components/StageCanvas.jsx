@@ -5,6 +5,7 @@ import { DepthOfField, EffectComposer, Vignette } from '@react-three/postprocess
 import CameraControls from './CameraControls';
 import gsap from 'gsap';
 import MenuSection from "../sections/MenuSection.jsx";
+import styles from "../styles/StageCanvas.module.css";
 
 
 
@@ -150,7 +151,7 @@ const StageCanvas = ({ positions }) => {
 
             <div className="wrap">
                 {isButtonVisible && (
-                    <button className="button" onClick={handleButtonClick}>
+                    <button className={styles.stageButton} onClick={handleButtonClick}>
                         Sisene veebilehele
                     </button>
                 )}
