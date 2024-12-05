@@ -8,8 +8,12 @@ html, body, #root {
 }
 
 canvas {
-    display: block;
-    z-index: 1; /* Ensure the canvas is rendered but below other elements */
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
 }
 
 .logo-container {
