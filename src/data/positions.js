@@ -56,8 +56,8 @@ export const positions = [
 
     //9. Esinemised
     {
-        position: [-14, 7.5, 6.2],
-        target: [-18, 6.7,6.4],
+        position: [-9, 19.5, -4],
+        target: [-12, 19.5, -4],
     },
 
 

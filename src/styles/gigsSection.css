@@ -1,0 +1,113 @@
+.gigsMainContainer {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    z-index: 1;
+    overflow: hidden;
+    background: transparent;
+}
+
+.gigsPortraitBox {
+    margin-top: 10px;
+    width: 60%;
+    max-width: 80vw;
+    height: 80%;
+    background: rgba(38, 36, 36, 0.4);
+    border-radius: 20px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.9);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 20px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    scroll-behavior: smooth;
+}
+
+.gigsTextContent {
+    font-family: 'Montserrat', serif;
+    margin: 10px 0;
+    text-align: center;
+    color: whitesmoke;
+    padding: 10px 20px;
+}
+
+.gigsTextContent h3 {
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 15px;
+    text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.5);
+}
+
+.gigsTextContent h4 {
+    font-size: 1.3rem;
+    font-weight: 600;
+}
+
+.gigsTextContent p {
+    font-size: 1.2rem;
+    line-height: 1.6;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+@media (max-width: 1024px) {
+    .gigsPortraitBox {
+        width: 80%;
+        height: 85%;
+        padding: 15px;
+    }
+
+    .gigsTextContent {
+        padding: 15px;
+        font-size: 1rem;
+    }
+
+    .gigsTextContent h3 {
+        font-size: 1.8rem;
+    }
+
+    .gigsTextContent h4 {
+        font-size: 1.3rem;
+    }
+
+    .gigsTextContent p {
+        font-size: 1rem;
+        line-height: 1.5;
+    }
+}
+
+@media (max-width: 768px) {
+    .gigsPortraitBox {
+        width: 90%;
+        height: 90%;
+        padding: 10px;
+    }
+
+    .gigsTextContent {
+        padding: 10px;
+        text-align: center;
+        font-size: 0.9rem;
+    }
+
+    .gigsTextContent h3 {
+        font-size: 1.5rem;
+        margin-bottom: 10px;
+    }
+
+    .gigsTextContent h4 {
+        font-size: 1.2rem;
+        margin-bottom: 10px;
+    }
+
+    .gigsTextContent p {
+        font-size: 0.9rem;
+        line-height: 1.4;
+    }
+}

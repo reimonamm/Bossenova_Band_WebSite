@@ -30,11 +30,11 @@ const ContactSection = () => {
         <div className={`contact-container ${isSent ? "sent" : ""}`}>
                 <article className="letter">
                     <div className="side">
-                        <h1>Kui Teile tundub, et just Bossenova on õige bänd Teie sündmust rikastama, siis võtke meiega ühendust!s</h1>
+                        <h1>Kui Teile tundub, et just Bossenova on õige bänd Teie sündmust rikastama, siis võtke meiega ühendust!</h1>
                         <p>
                     <textarea
                         className="message-area"
-                        placeholder="Your message"
+                        placeholder="Peo toimumise aeg, koht, külaliste arv, tehniline valmisolek, ürituse sisu"
                         value={message}
                         onChange={handleMessageChange}
                     />

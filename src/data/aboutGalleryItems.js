@@ -1,15 +1,10 @@
 const aboutGalleryItems = [
+
     {
-        quote: "Marta Pikani",
-        author: "Laulan ja ajan asju",
-        image: "/MembersImages/Marta.jpg",
-        backgroundPosition: "center 20%"
-    },
-    {
-        quote: "Anete Namm",
-        author: "Laulan",
-        image: "/MembersImages/Anete.jpg",
-        backgroundPosition: "center 18%"
+        quote: "Maali Kukk",
+        author: "Mängin musti ja valgeid klahve",
+        image: "/MembersImages/Maali.jpg",
+        backgroundPosition: "56% 16%"
     },
     {
         quote: "Hans K. Pikani",
@@ -18,17 +13,24 @@ const aboutGalleryItems = [
         backgroundPosition: "43% 13%"
     },
     {
+        quote: "Anete Namm",
+        author: "Laulan",
+        image: "/MembersImages/Anete.jpg",
+        backgroundPosition: "center 18%"
+    },
+    {
+        quote: "Marta Pikani",
+        author: "Laulan ja ajan asju",
+        image: "/MembersImages/Marta.jpg",
+        backgroundPosition: "center 20%"
+    },
+    {
         quote: "Reimo Namm",
         author: "Mängin kitarri",
         image: "/MembersImages/Reimo.jpg",
         backgroundPosition: "46% 16%"
     },
-    {
-        quote: "Maali Kukk",
-        author: "Mängin valgeid ja musti klahve",
-        image: "/MembersImages/Maali.jpg",
-        backgroundPosition: "56% 16%"
-    },
+
     {
         quote: "Emil Erastus",
         author: "Mängin bassi",

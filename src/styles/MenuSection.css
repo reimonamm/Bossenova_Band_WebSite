@@ -208,10 +208,10 @@ input#toggle:checked ~ #show-menu .btn .closeBtn {
 
 .backButton {
     position: absolute;
-    bottom: 10%; /* Adjust placement */
+    bottom: 8%;
     left: 50%;
     transform: translateX(-50%);
-    z-index: 15; /* Ensure it stays above the canvas and other elements */
+    z-index: 15;
 
     width: 140px;
     height: 45px;
@@ -238,3 +238,20 @@ input#toggle:checked ~ #show-menu .btn .closeBtn {
 
     transform: translate(-50%, -7px); /* Keep horizontal centering intact */
 }
+
+
+@media (max-width: 1024px) {
+    .backButton {
+        bottom: 3%;
+    }
+}
+
+@media (max-width: 768px) {
+    .backButton {
+        bottom: 1%;
+        width: 120px;
+        height: 40px;
+        font-size: 10px;
+    }
+}
+

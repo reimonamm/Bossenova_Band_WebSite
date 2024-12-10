@@ -4,6 +4,8 @@ import '../styles/MenuSection.css';
 const FeedbackSection = lazy(() => import('./FeedbackSection'));
 const ContactSection = lazy(() => import('./ContactSection'));
 const AboutSection = lazy(() => import('./AboutSection'));
+const CustomerSection = lazy(() => import('./CustomerSection'));
+const GigsSection = lazy(() => import('./GigsSection.jsx'));
 
 const MenuSection = ({ scale = 0.8, moveCamera, positions }) =>{
 
@@ -19,9 +21,11 @@ const MenuSection = ({ scale = 0.8, moveCamera, positions }) =>{
     const [activeSection, setActiveSection] = useState(null);
 
     const sectionMap = {
-        4: { name: "AboutSection", delay: 2000 },
+        4: { name: "AboutSection", delay: 2800 },
+        5: { name: "CustomerSection", delay: 2000 },
         6: { name: "FeedbackSection", delay: 2000 },
         7: { name: "ContactSection", delay: 3000 },
+        9: { name: "GigsSection", delay: 2000 },
     };
 
     const renderSection = () => {
@@ -32,6 +36,10 @@ const MenuSection = ({ scale = 0.8, moveCamera, positions }) =>{
                 return <FeedbackSection />;
             case "ContactSection":
                 return <ContactSection />;
+            case "CustomerSection":
+                return <CustomerSection />;
+            case "GigsSection":
+                return <GigsSection />;
             default:
                 return null;
         }

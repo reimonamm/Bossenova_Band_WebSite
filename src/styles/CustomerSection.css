@@ -1,0 +1,140 @@
+.customerMainContainer {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    z-index: 1;
+    overflow: hidden;
+    background: transparent;
+}
+
+.customerPortraitBox {
+    margin-top: 10px;
+    width: 60%;
+    max-width: 80vw;
+    height: 80%;
+    background: rgba(38, 36, 36, 0.4);
+    border-radius: 20px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.9);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 20px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    scroll-behavior: smooth;
+}
+
+.customerTextContent{
+    font-family: 'Montserrat', serif;
+    margin: 10px 0;
+    text-align: center;
+    color: whitesmoke;
+    padding: 10px 20px;
+}
+
+.customerTextContent h3 {
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 15px;
+    text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.5);
+}
+.customerTextContent h4 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 15px;
+    text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.5);
+}
+.customerTextContent p {
+    font-weight: 400;
+    font-size: 1.2rem;
+    line-height: 1.6;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+.customerTextContent ul{
+    list-style: none;
+    font-size: 1.2rem;
+    line-height: 1.3;
+    color: whitesmoke;
+}
+
+.customerTextContent ul li{
+    margin-bottom: 5px;
+    font-weight: 400;
+}
+
+/* Adjustments for smaller screens */
+@media (max-width: 1024px) {
+    .customerPortraitBox {
+        width: 80%; /* Increase width for tablets */
+        height: 85%; /* Allow more height for readability */
+        padding: 15px; /* Reduce padding */
+    }
+
+    .customerTextContent {
+        padding: 15px; /* Increase padding for readability */
+        font-size: 1rem; /* Adjust font size */
+    }
+
+    .customerTextContent h3 {
+        font-size: 1.8rem; /* Slightly smaller for tablets */
+    }
+
+    .customerTextContent h4 {
+        font-size: 1.3rem; /* Slightly smaller headings */
+    }
+
+    .customerTextContent p {
+        font-size: 1rem; /* Smaller paragraphs */
+        line-height: 1.5; /* Maintain spacing */
+    }
+
+    .customerTextContent ul {
+        font-size: 1rem; /* Adjust bullet list size */
+    }
+}
+
+@media (max-width: 768px) {
+    .customerPortraitBox {
+        width: 90%; /* Maximize space usage */
+        height: 90%; /* Almost full screen for mobile */
+        padding: 10px; /* Reduce padding */
+    }
+
+    .customerTextContent {
+        padding: 10px; /* Adjust padding */
+        text-align: center; /* Align text to left for better readability */
+        font-size: 0.9rem; /* Smaller font size */
+    }
+
+    .customerTextContent h3 {
+        font-size: 1.5rem; /* Reduce size for smaller screens */
+        margin-bottom: 10px; /* Tighten spacing */
+    }
+
+    .customerTextContent h4 {
+        font-size: 1.2rem; /* Smaller headings */
+        margin-bottom: 10px;
+    }
+
+    .customerTextContent p {
+        font-size: 0.9rem; /* Adjust paragraph size */
+        line-height: 1.4; /* Reduce spacing */
+    }
+
+    .customerTextContent ul {
+        padding-left: 20px; /* Reduce indent */
+        font-size: 0.9rem; /* Smaller bullet list */
+    }
+
+    .customerTextContent ul li {
+        margin-bottom: 8px; /* Tighten spacing between list items */
+    }
+}

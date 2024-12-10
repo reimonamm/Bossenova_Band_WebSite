@@ -1,4 +1,6 @@
 
+
+
 .aboutMainContainer {
     position: absolute;
     top: 0;
@@ -9,20 +11,33 @@
     justify-content: center;
     align-items: flex-start;
     z-index: 1;
+    overflow: hidden;
     background: transparent;
 }
 .portraitBox {
+    margin-top: 10px;
     width: 60%;
     max-width: 80vw;
     height: 80%;
+    max-height: 90%;
     background: rgba(38, 36, 36, 0.4);
     border-radius: 20px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.9);
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
     padding: 20px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    scroll-behavior: smooth;
+}
+@media (max-width: 768px) {
+    .portraitBox{
+        width: 95%;
+        height: 90%;
+        padding: 10px;
+    }
 }
 
 .aboutGalleryContainer {
@@ -30,19 +45,20 @@
     flex-direction: column;
     border-radius: 20px;
     width: 100%;
-    height: 100%;
+    min-height: 600px;
+    flex-shrink: 0;
     background: transparent;
     overflow: hidden;
-    overflow-y: auto;
-    scroll-behavior: smooth;
 }
 
 @media (min-width: 1024px) {
     .aboutGalleryContainer {
         flex-direction: row;
+        height: 50%;
 
     }
 }
+
 
 .aboutGalleryItem {
     position: relative;
@@ -180,3 +196,104 @@
         border-color: rgba(133, 103, 3, 0.5);
     }
 }
+
+/*Text*/
+.aboutTextContent {
+    font-family: 'Montserrat', serif;
+    margin: 10px 0;
+    text-align: center;
+    color: whitesmoke;
+    padding: 10px 20px;
+}
+.aboutTextContent h1 {
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 15px;
+    text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.5);
+}
+.aboutTextContent h2 {
+
+    font-size: 1.8rem;
+    font-weight: 700;
+    margin-bottom: 15px;
+    text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.5);
+}
+.aboutTextContent p {
+
+    font-weight: 400;
+    font-size: 1.2rem;
+    line-height: 1.6;
+    margin-bottom: 10px;
+    text-align: center;
+}
+@media (max-width: 768px) {
+    .aboutTextContent {
+        margin: 10px 0;
+        padding: 5px; /* Add more padding for smaller screens */
+        text-align: center; /* Left-align for better readability on narrow screens */
+    }
+
+    .aboutTextContent h2 {
+        font-size: 1.5rem; /* Adjust font size for smaller screens */
+    }
+
+    .aboutTextContent p {
+        font-size: 1.1rem; /* Slightly smaller font for paragraphs */
+    }
+}
+
+
+.aboutTrioSection {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 20px;
+    padding: 5px;
+
+    border-radius: 10px;
+    text-align: center;
+}
+
+.aboutTrioSection h1 {
+    font-size: 2rem;
+    margin-bottom: 15px;
+}
+
+.aboutTrioImageContainer {
+    width: 90%;
+    max-width: 800px;
+    margin: 20px auto;
+    overflow: hidden;
+}
+
+.aboutTrioImageContainer img {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.7);
+}
+
+.aboutTrioSection p {
+    font-size: 1.2rem; /* Text size for paragraph */
+    color: whitesmoke;
+    line-height: 1.5;
+    margin-top: 15px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .aboutTrioImageContainer {
+        width: 100%; /* Allow full width on smaller screens */
+        max-width: 90%; /* Slight margin for spacing */
+    }
+
+    .aboutTrioSection h1 {
+        font-size: 1.5rem; /* Adjust heading size for smaller screens */
+    }
+
+    .aboutTrioSection p {
+        font-size: 1.1rem; /* Smaller font size for readability */
+    }
+}
+
+
