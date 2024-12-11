@@ -1,5 +1,6 @@
-import React, {useState, lazy, Suspense, useCallback, useMemo} from 'react';
+import React, {useState, lazy, Suspense, useCallback, useMemo, useEffect} from 'react';
 import '../styles/MenuSection.css';
+import VideoSection from "./VideoSection.jsx";
 
 const FeedbackSection = lazy(() => import('./FeedbackSection'));
 const ContactSection = lazy(() => import('./ContactSection'));
@@ -21,8 +22,10 @@ const MenuSection = ({ scale = 0.8, moveCamera, positions }) =>{
 
     const [showBackButton, setShowBackButton] = useState(false);
     const [activeSection, setActiveSection] = useState(null);
+    const [isVideoVisible, setIsVideoVisible] = useState(false);
 
     const sectionMap = {
+        2: { name: "VideoSection", delay: 2000},
         3: { name: "GallerySection", delay: 2500},
         4: { name: "AboutSection", delay: 2800 },
         5: { name: "CustomerSection", delay: 2000 },
@@ -32,8 +35,15 @@ const MenuSection = ({ scale = 0.8, moveCamera, positions }) =>{
         9: { name: "GigsSection", delay: 2000 },
     };
 
+    //Video audio
+    useEffect(() => {
+        setActiveSection("VideoSection");
+    }, []);
+
     const renderSection = () => {
         switch (activeSection) {
+            case "VideoSection":
+                return <VideoSection isVideoVisible={isVideoVisible} />;
             case "AboutSection":
                 return <AboutSection/>
             case "FeedbackSection":
@@ -53,36 +63,37 @@ const MenuSection = ({ scale = 0.8, moveCamera, positions }) =>{
         }
     };
 
+
+
     //Camera Movement
-    const handleMoveToPosition = useCallback(
-        (targetIndex) => {
-            if (!moveCamera || !positions) return;
+    const handleMoveToPosition = useCallback((targetIndex) => {
+        if (!moveCamera || !positions) return;
 
-            moveCamera(targetIndex);
+        moveCamera(targetIndex);
 
-            const sectionInfo = sectionMap[targetIndex];
-            if (sectionInfo) {
-                const { name, delay } = sectionInfo;
-                setTimeout(() => {
-                    setActiveSection(name);
-                }, delay);
-            } else {
-                setActiveSection(null);
-            }
-
-            // Hide Menu
+        const sectionInfo = sectionMap[targetIndex];
+        if (sectionInfo) {
+            const { name, delay } = sectionInfo;
             setTimeout(() => {
-                const menu = document.querySelector('.menu');
-                if (menu) menu.style.display = 'none';
-            }, 1000);
+                setActiveSection(name);
 
-            // Show Back Button
-            setTimeout(() => {
-                setShowBackButton(true);
-            }, 3000);
-        },
-        [moveCamera, positions, sectionMap]
-    );
+                if (name === "VideoSection") {
+                    setIsVideoVisible(true);
+                }
+            }, delay);
+        } else {
+            setActiveSection(null);
+        }
+
+        setTimeout(() => {
+            const menu = document.querySelector('.menu');
+            if (menu) menu.style.display = 'none';
+        }, 1000);
+
+        setTimeout(() => {
+            setShowBackButton(true);
+        }, 3000);
+    }, [moveCamera, positions, sectionMap]);
 
     const handleMenuClick = (targetIndex) => {
         handleMoveToPosition(targetIndex);
@@ -93,6 +104,7 @@ const MenuSection = ({ scale = 0.8, moveCamera, positions }) =>{
         moveCamera(1);
         setShowBackButton(false);
         setActiveSection(null);
+        setIsVideoVisible(false);
 
         setTimeout(() => {
             const backBtn = document.querySelector('.backButton');
@@ -179,6 +191,12 @@ const MenuSection = ({ scale = 0.8, moveCamera, positions }) =>{
 
             <Suspense fallback={<div>Loading...</div>}>
                 {renderSection()}
+            </Suspense>
+
+            <Suspense fallback={<div>Loading...</div>}>
+                {activeSection === "VideoSection" && (
+                    <VideoSection isVideoVisible={isVideoVisible} />
+                )}
             </Suspense>
 
         </>
