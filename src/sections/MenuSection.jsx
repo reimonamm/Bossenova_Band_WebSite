@@ -6,6 +6,8 @@ const ContactSection = lazy(() => import('./ContactSection'));
 const AboutSection = lazy(() => import('./AboutSection'));
 const CustomerSection = lazy(() => import('./CustomerSection'));
 const GigsSection = lazy(() => import('./GigsSection.jsx'));
+const GallerySection = lazy(() => import('./GallerySection'));
+const BlogSection = lazy(() => import('./BlogSection'));
 
 const MenuSection = ({ scale = 0.8, moveCamera, positions }) =>{
 
@@ -21,10 +23,12 @@ const MenuSection = ({ scale = 0.8, moveCamera, positions }) =>{
     const [activeSection, setActiveSection] = useState(null);
 
     const sectionMap = {
+        3: { name: "GallerySection", delay: 2500},
         4: { name: "AboutSection", delay: 2800 },
         5: { name: "CustomerSection", delay: 2000 },
         6: { name: "FeedbackSection", delay: 2000 },
         7: { name: "ContactSection", delay: 3000 },
+        8: { name: "BlogSection", delay: 3000 },
         9: { name: "GigsSection", delay: 2000 },
     };
 
@@ -40,6 +44,10 @@ const MenuSection = ({ scale = 0.8, moveCamera, positions }) =>{
                 return <CustomerSection />;
             case "GigsSection":
                 return <GigsSection />;
+            case "GallerySection":
+                return <GallerySection />;
+            case "BlogSection":
+                return <BlogSection />;
             default:
                 return null;
         }
