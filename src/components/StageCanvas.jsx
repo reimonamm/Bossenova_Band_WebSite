@@ -84,7 +84,6 @@ const StageCanvas = ({ positions }) => {
                 }));
             },
             onComplete: () => {
-                console.log("Effects animation complete");
                 setTimeout(() =>{
                     setIsMenuVisible(true);
                 },1700);

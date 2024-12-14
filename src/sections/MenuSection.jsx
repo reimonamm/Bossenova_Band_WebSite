@@ -1,6 +1,7 @@
 import React, {useState, lazy, Suspense, useCallback, useMemo, useEffect} from 'react';
 import '../styles/MenuSection.css';
 import VideoSection from "./VideoSection.jsx";
+import Footer from "../components/Footer";
 
 const FeedbackSection = lazy(() => import('./FeedbackSection'));
 const ContactSection = lazy(() => import('./ContactSection'));
@@ -23,6 +24,9 @@ const MenuSection = ({ scale = 0.8, moveCamera, positions }) =>{
     const [showBackButton, setShowBackButton] = useState(false);
     const [activeSection, setActiveSection] = useState(null);
     const [isVideoVisible, setIsVideoVisible] = useState(false);
+    const [isFirstRender, setIsFirstRender] = useState(true);
+
+
 
     const sectionMap = {
         2: { name: "VideoSection", delay: 2000},
@@ -40,10 +44,28 @@ const MenuSection = ({ scale = 0.8, moveCamera, positions }) =>{
         setActiveSection("VideoSection");
     }, []);
 
+    //Menu opening
+    useEffect(() => {
+        const simulateMenuButtonClick = () => {
+            const menuBtn = document.querySelector('.menuBtn');
+            const toggleInput = document.getElementById('toggle');
+
+            if (menuBtn && toggleInput) {
+                if (!toggleInput.checked) {
+                    const delay = isFirstRender ? 200 : 2000; // Shorter delay for the first render
+                    setTimeout(() => {
+                        menuBtn.click(); // Simulate the button click
+                        setIsFirstRender(false); // Set to false after the first render
+                    }, delay);
+                }
+            }
+        };
+
+        simulateMenuButtonClick();
+    }, [activeSection, showBackButton, isFirstRender]);
+
     const renderSection = () => {
         switch (activeSection) {
-            case "VideoSection":
-                return <VideoSection isVideoVisible={isVideoVisible} />;
             case "AboutSection":
                 return <AboutSection/>
             case "FeedbackSection":
@@ -74,22 +96,23 @@ const MenuSection = ({ scale = 0.8, moveCamera, positions }) =>{
         const sectionInfo = sectionMap[targetIndex];
         if (sectionInfo) {
             const { name, delay } = sectionInfo;
+
             setTimeout(() => {
                 setActiveSection(name);
-
-                if (name === "VideoSection") {
-                    setIsVideoVisible(true);
-                }
+                setIsVideoVisible(name === "VideoSection");
             }, delay);
         } else {
             setActiveSection(null);
+            setIsVideoVisible(false);
         }
 
+        // Hide menu
         setTimeout(() => {
             const menu = document.querySelector('.menu');
             if (menu) menu.style.display = 'none';
         }, 1000);
 
+        // Show back button
         setTimeout(() => {
             setShowBackButton(true);
         }, 3000);
@@ -193,12 +216,9 @@ const MenuSection = ({ scale = 0.8, moveCamera, positions }) =>{
                 {renderSection()}
             </Suspense>
 
-            <Suspense fallback={<div>Loading...</div>}>
-                {activeSection === "VideoSection" && (
-                    <VideoSection isVideoVisible={isVideoVisible} />
-                )}
-            </Suspense>
+            <VideoSection isVideoVisible={isVideoVisible} />
 
+            <Footer/>
         </>
 
 
