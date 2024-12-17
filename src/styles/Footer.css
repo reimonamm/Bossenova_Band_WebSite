@@ -40,23 +40,25 @@
     display: flex;
     justify-content: flex-end;
     align-items: center;
+    margin-right: 30px;
 }
 
 .muteButton {
     background: none;
     border: none;
     cursor: pointer;
-    outline: none;
     padding: 0;
+    outline: none;
 }
 
-.muteButton img {
-    width: 24px;
-    height: 24px;
-    filter: invert(1); /* Makes the SVG white for visibility */
-    transition: transform 0.2s ease; /* Smooth scaling effect on hover */
+.muteButton svg {
+    width: 32px;
+    height: 32px;
+    fill: #8a8484; /* Makes the icon grey */
+    transition: transform 0.2s ease, fill 0.2s ease;
 }
 
-.muteButton:hover img {
-    transform: scale(1.1); /* Slightly enlarge icon on hover */
+.muteButton:hover svg {
+    transform: scale(1.1);
+    fill: #ffd700; /* Change to gold on hover */
 }

@@ -1,37 +1,34 @@
-import React, {useEffect, useRef, useState} from 'react';
-import Player from '@vimeo/player';
-import '../styles/VideoSection.css';
+import React, { useEffect, useRef, useState } from "react";
+import Player from "@vimeo/player";
+import "../styles/VideoSection.css";
 
-const VideoSection = ({ isVideoVisible, onVolumeChange }) => {
+const VideoSection = ({ isVideoVisible, onVolumeChange, isMuted }) => {
     const videoRef = useRef(null);
     const playerRef = useRef(null);
-
+    const fadeDuration = 2000; // Duration of fade in milliseconds
+    const [previousVolume, setPreviousVolume] = useState(0.5); // Default volume
+    const [forceVolume, setForceVolume] = useState(null); // Force volume state
 
     useEffect(() => {
         if (videoRef.current && !playerRef.current) {
             playerRef.current = new Player(videoRef.current);
-
-            playerRef.current.setVolume(0.5).catch((err) => console.error('Volume error:', err));
+            playerRef.current.setVolume(0.5).catch((err) => console.error("Volume error:", err));
         }
     }, []);
 
-    // Update volume based on isVideoVisible
     useEffect(() => {
         if (playerRef.current) {
-            const newVolume = isVideoVisible ? 1 : 0.5; // Full volume in video section, half in menu
-            playerRef.current.setVolume(newVolume).catch((err) => console.error('Volume error:', err));
-
-            // Notify parent component of volume change (optional)
-            if (onVolumeChange) {
-                onVolumeChange(newVolume);
+            if (isMuted) {
+                playerRef.current.setVolume(0).catch((err) => console.error("Mute error:", err));
+            } else {
+                const targetVolume = isVideoVisible ? 1 : 0.5; // Restore volume
+                playerRef.current.setVolume(targetVolume).catch((err) => console.error("Unmute error:", err));
             }
         }
-    }, [isVideoVisible]);
+    }, [isMuted, isVideoVisible]);
 
     return (
-        <div
-            className={`videoMainContainer ${isVideoVisible ? 'visible' : 'hidden'}`}
-        >
+        <div className={`videoMainContainer ${isVideoVisible ? "visible" : "hidden"}`}>
             <div className="videoPortraitBox">
                 <div className="iframeWrapper">
                     <iframe

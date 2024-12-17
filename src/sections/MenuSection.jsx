@@ -25,6 +25,11 @@ const MenuSection = ({ scale = 0.8, moveCamera, positions }) =>{
     const [activeSection, setActiveSection] = useState(null);
     const [isVideoVisible, setIsVideoVisible] = useState(false);
     const [isFirstRender, setIsFirstRender] = useState(true);
+    const [isMuted, setIsMuted] = useState(false);
+
+    const handleMuteToggle = () => {
+        setIsMuted((prev) => !prev);
+    }
 
 
 
@@ -52,10 +57,10 @@ const MenuSection = ({ scale = 0.8, moveCamera, positions }) =>{
 
             if (menuBtn && toggleInput) {
                 if (!toggleInput.checked) {
-                    const delay = isFirstRender ? 200 : 2000; // Shorter delay for the first render
+                    const delay = isFirstRender ? 200 : 2000;
                     setTimeout(() => {
-                        menuBtn.click(); // Simulate the button click
-                        setIsFirstRender(false); // Set to false after the first render
+                        menuBtn.click();
+                        setIsFirstRender(false);
                     }, delay);
                 }
             }
@@ -216,9 +221,9 @@ const MenuSection = ({ scale = 0.8, moveCamera, positions }) =>{
                 {renderSection()}
             </Suspense>
 
-            <VideoSection isVideoVisible={isVideoVisible} />
+            <VideoSection isVideoVisible={isVideoVisible} isMuted={isMuted} />
 
-            <Footer/>
+            <Footer onMuteToggle={handleMuteToggle} isMuted={isMuted} />
         </>
 
 
