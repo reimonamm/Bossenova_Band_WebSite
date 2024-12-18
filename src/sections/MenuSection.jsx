@@ -32,7 +32,6 @@ const MenuSection = ({ scale = 0.8, moveCamera, positions }) =>{
     }
 
 
-
     const sectionMap = {
         2: { name: "VideoSection", delay: 2000},
         3: { name: "GallerySection", delay: 2500},
@@ -51,23 +50,29 @@ const MenuSection = ({ scale = 0.8, moveCamera, positions }) =>{
 
     //Menu opening
     useEffect(() => {
+        let timer; // To store the timeout reference
+
         const simulateMenuButtonClick = () => {
             const menuBtn = document.querySelector('.menuBtn');
             const toggleInput = document.getElementById('toggle');
 
             if (menuBtn && toggleInput) {
+                // Only open the menu if it is not already open
                 if (!toggleInput.checked) {
-                    const delay = isFirstRender ? 200 : 2000;
-                    setTimeout(() => {
+                    const delay = isFirstRender ? 200 : 2000; // Fast for first render, slower for others
+                    timer = setTimeout(() => {
                         menuBtn.click();
-                        setIsFirstRender(false);
+                        setIsFirstRender(false); // Mark first render as done
                     }, delay);
                 }
             }
         };
 
         simulateMenuButtonClick();
-    }, [activeSection, showBackButton, isFirstRender]);
+
+        // Cleanup to avoid multiple triggers
+        return () => clearTimeout(timer);
+    }, [showBackButton]); // Depend only on showBackButton
 
     const renderSection = () => {
         switch (activeSection) {

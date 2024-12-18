@@ -140,15 +140,22 @@ button:hover {
     background-color: #3b3003;
 }
 
-/* Result Message Styling */
 .result-message {
     opacity: 0;
-    color: #41030e;
-    font-size: 1.3rem;
+    font-size: 1.2rem;
     margin-top: 20px;
-    transition: opacity 5s;
+    text-align: center;
+    transition: opacity 5s ease-in-out;
 }
 
-.contact-container.sent .result-message {
+.result-message.visible {
     opacity: 1;
+}
+
+.result-message.success {
+    color: #41030e; /* Success color */
+}
+
+.result-message.error {
+    color: #6e0303; /* Error color */
 }

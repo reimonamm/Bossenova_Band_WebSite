@@ -1,3 +1,5 @@
+
+
 .blogMainContainer {
     position: absolute;
     top: 0;
@@ -29,54 +31,42 @@
     scroll-behavior: smooth;
 }
 
-.blogTextContent {
-    font-family: 'Montserrat', serif;
-    margin: 10px 0;
-    text-align: center;
-    color: whitesmoke;
-    padding: 10px 20px;
-}
 
-.blogTextContent h3 {
-    font-size: 2rem;
+.blogWrapper {
+    height: 100vh;
+    /*This part is important for centering*/
+    display: grid;
+    place-items: center;
+}
+.typing{
+    width: 15ch;
+    animation:
+            typing 2s steps(13) forwards, /* Typing animation */
+            blink 1s step-end infinite; /* Cursor blink */
+    white-space: nowrap;
+    overflow: hidden;
+    border-right: 3px solid;
+    font-size: 2em;
+    font-family: 'Courier New', Courier, monospace;
     font-weight: 700;
-    margin-bottom: 15px;
-    text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.5);
+    color: whitesmoke;
+}
+@keyframes typing {
+    from {
+        width: 0
+    }
 }
 
-.blogTextContent h6 {
-    font-size: 1.3rem;
-    font-weight: 300;
+@keyframes blink {
+    0%, 100% {
+        border-color: whitesmoke; /* Cursor visible */
+    }
+    50% {
+        border-color: transparent; /* Cursor hidden */
+    }
 }
 
-.blogTextContent p {
-    font-size: 1.2rem;
-    line-height: 1.6;
-    margin-bottom: 10px;
-    text-align: center;
-    display: none; /* Initially hidden */
-    transition: opacity 0.3s ease;
-}
 
-.blogTextContent p.visible {
-    display: block; /* Visible when toggled */
-    opacity: 1;
 
-}
 
-.toggleButton {
-    background-color: #4caf50;
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    margin: 10px 0;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 1rem;
-    text-transform: uppercase;
-    transition: background-color 0.3s ease;
-}
 
-.toggleButton:hover {
-    background-color: #45a049;
-}

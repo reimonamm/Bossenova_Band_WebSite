@@ -99,7 +99,16 @@ const GallerySection = () => {
                 this.navButtons.forEach((button, index) => {
                     button.addEventListener("click", () => this.showSlide(index));
                 });
+                document.addEventListener("keydown", (e) => this.handleKeyNavigation(e));
             }
+            handleKeyNavigation(event){
+                if (event.key === "ArrowLeft") {
+                    this.handleNavigation(-1);
+                } else if (event.key === "ArrowRight") {
+                    this.handleNavigation(1);
+                }
+            }
+
 
             handleNavigation(direction) {
                 const nextIndex =
