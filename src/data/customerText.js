@@ -4,10 +4,10 @@ const customerText = [
         p1: "Kuigi mobiili teel on kõige kiirem võimalus bändiga kontakti saada, tuleb alati kokkulepped kirjalikult üle täpsustada.",
         title1: "E-kiri võiks sisaldada:",
         p2: [
-            "peo toimumise aega",
-            "kohta",
-            "külaliste arvu",
-            "oma soove bändile, sh millise peoga on tegemist"
+            "- peo toimumise aega",
+            "- kohta",
+            "- külaliste arvu",
+            "- oma soove bändile, sh millise peoga on tegemist"
         ],
         hero2: "Bossenova hind",
         p3: "Bossenova hind sõltub mitmetest asjaoludest, kõige tugevamad mõjutajad on peo toimumise aeg ja koht. ",

@@ -8,7 +8,7 @@ const BlogSection = () => {
             <div className="blogPortraitBox">
                 <div className="blogWrapper">
                     <div className="typing">
-                        Tuleb Varsti...
+                        Tuleb varsti...
                     </div>
                 </div>
             </div>
