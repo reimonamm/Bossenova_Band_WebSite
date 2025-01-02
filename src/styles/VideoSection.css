@@ -23,7 +23,7 @@
 .videoPortraitBox {
     margin-top: 10px;
     width: 60%;
-    max-width: 80vw;
+    max-width: 100vw;
     height: 80%;
     background: rgba(38, 36, 36, 0.4);
     border-radius: 20px;
@@ -49,4 +49,44 @@
     height: 100%;
     border: none;
     background: transparent;
+}
+
+@media (max-width: 1024px) {
+    .videoMainContainer {
+        height: 100%;
+    }
+
+    .videoPortraitBox {
+        width: 80%;
+        height: 85%;
+        margin-top: 5px;
+    }
+}
+
+@media (max-width: 768px) {
+    .videoMainContainer {
+        height: 100%;
+    }
+
+    .videoPortraitBox {
+        width: 99%;
+        height: 90%;
+        margin-top: 5px;
+    }
+
+    .iframeWrapper iframe {
+        border-radius: 15px;
+    }
+}
+
+@media (max-width: 480px) {
+    .videoPortraitBox {
+        width: 99%;
+        height: 95%;
+        margin-top: 5px;
+    }
+
+    .iframeWrapper iframe {
+        border-radius: 10px;
+    }
 }

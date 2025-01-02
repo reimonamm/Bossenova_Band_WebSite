@@ -79,49 +79,49 @@
 /* Adjustments for smaller screens */
 @media (max-width: 1024px) {
     .customerPortraitBox {
-        width: 80%; /* Increase width for tablets */
-        height: 85%; /* Allow more height for readability */
-        padding: 15px; /* Reduce padding */
+        width: 80%;
+        height: 85%;
+        padding: 15px;
     }
 
     .customerTextContent {
-        padding: 15px; /* Increase padding for readability */
-        font-size: 1rem; /* Adjust font size */
+        padding: 15px;
+        font-size: 1rem;
     }
 
     .customerTextContent h3 {
-        font-size: 1.8rem; /* Slightly smaller for tablets */
+        font-size: 1.8rem;
     }
 
     .customerTextContent h4 {
-        font-size: 1.3rem; /* Slightly smaller headings */
+        font-size: 1.3rem;
     }
 
     .customerTextContent p {
-        font-size: 1rem; /* Smaller paragraphs */
-        line-height: 1.5; /* Maintain spacing */
+        font-size: 1rem;
+        line-height: 1.5;
     }
 
     .customerTextContent ul {
-        font-size: 1rem; /* Adjust bullet list size */
+        font-size: 1rem;
     }
 }
 
 @media (max-width: 768px) {
     .customerPortraitBox {
-        width: 90%; /* Maximize space usage */
-        height: 90%; /* Almost full screen for mobile */
-        padding: 10px; /* Reduce padding */
+        width: 90%;
+        height: 90%;
+        padding: 10px;
     }
 
     .customerTextContent {
-        padding: 10px; /* Adjust padding */
-        text-align: center; /* Align text to left for better readability */
-        font-size: 0.9rem; /* Smaller font size */
+        margin: 10px 0;
+        padding: 5px;
+        text-align: center;
     }
 
     .customerTextContent h3 {
-        font-size: 1.5rem; /* Reduce size for smaller screens */
+        font-size: 1.5rem;
         margin-bottom: 10px; /* Tighten spacing */
     }
 
@@ -131,13 +131,13 @@
     }
 
     .customerTextContent p {
-        font-size: 0.9rem; /* Adjust paragraph size */
+        font-size: 1.1rem; /* Adjust paragraph size */
         line-height: 1.4; /* Reduce spacing */
     }
 
     .customerTextContent ul {
         padding-left: 20px; /* Reduce indent */
-        font-size: 0.9rem; /* Smaller bullet list */
+        font-size: 1.1rem; /* Smaller bullet list */
     }
 
     .customerTextContent ul li {

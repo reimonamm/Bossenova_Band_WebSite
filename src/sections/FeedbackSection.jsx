@@ -141,19 +141,24 @@ const FeedbackSection = () => {
     }
 
     return (
-        <div className="feedback-container" onClick={handleCardClick}>
-            <div className="slider" ref={sliderRef}>
-                {feedbackCards.map((card, index) => (
-                    <div className="card" key={index}>
-                        <img src={card.img} alt={`Card ${index + 1}`} loading="lazy" />
-                        <div className="copy">
-                            <p>{card.text}</p>
-                            <h1>{card.title}</h1>
-                        </div>
-                    </div>
-                ))}
+        <>
+            <div className="feedback-info">
+                <p>Klikka pildile</p>
             </div>
-        </div>
+            <div className="feedback-container" onClick={handleCardClick}>
+                <div className="slider" ref={sliderRef}>
+                    {feedbackCards.map((card, index) => (
+                        <div className="card" key={index}>
+                            <img src={card.img} alt={`Card ${index + 1}`} loading="lazy" />
+                            <div className="copy">
+                                <p>{card.text}</p>
+                                <h1>{card.title}</h1>
+                            </div>
+                        </div>
+                    ))}
+                </div>
+            </div>
+        </>
     );
 };
 

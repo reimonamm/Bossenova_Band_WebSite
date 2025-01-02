@@ -15,15 +15,30 @@
     left: 0;
     width: 100%;
     height: 100%;
-    z-index: 1; /* Ensure it doesn't cover critical elements */
+    z-index: 1;
     pointer-events: auto;
     opacity: 0;
     animation: fadeIn 1s ease-in-out forwards;
 }
 
+.feedback-info {
+    position: absolute;
+    top: 5%;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 100;
+    text-align: center;
+    color: #aba9a9;
+    font-family: 'Montserrat', serif;
+    font-size: 1.2rem;
+    text-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+    pointer-events: none;
+}
+
 .slider {
     position: absolute;
-    top: 15vh;
+    top: calc(10% + 50px);
+
     width: 100%;
     height: 100dvh;
     overflow: hidden;
@@ -47,7 +62,7 @@
     width: 100%;
     height: 100%;
     object-fit: cover;
-    opacity: 1; /* Set full visibility */
+    opacity: 1;
     filter: grayscale(90%);
     transition: filter 0.3s ease-in-out;
 
@@ -61,7 +76,7 @@
     width: 100%;
     padding: 20px;
     text-align: center;
-    z-index: 10; /* Ensure text stays above images */
+    z-index: 10;
     background: rgba(0, 0, 0, 0.1);
 
 
@@ -69,26 +84,26 @@
 
 /* Card title styling */
 .copy h1 {
-    font-family: 'Bodoni Moda', serif;
+    font-family: 'Montserrat', serif;
     margin: 0;
-    font-size: clamp(1rem, 2vw, 1rem);
+    font-size: clamp(1rem, 4vw, 1rem);
     font-weight: 700;
     text-align: left;
-    color: #ffffff; /* White text */
-    text-shadow: 0 2px 5px rgba(0, 0, 0, 0.5); /* Text shadow for better readability */
+    color: #ffffff;
+    text-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
     padding: 0 20px;
 
 }
 
 /* Card description styling */
 .copy p {
-    font-family: 'Bodoni Moda', serif;
+    font-family: 'Montserrat', serif;
     margin-top: 10px;
-    font-size: clamp(0.7rem, 1.5vw, 1rem); /* Responsive font size */
+    font-size: clamp(0.7rem, 1.5vw, 1rem);
     font-weight: 400;
-    color: #f1f1f1; /* Slightly lighter white */
-    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.4); /* Subtle shadow */
-    line-height: 1.5; /* Improved readability */
+    color: #f1f1f1;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+    line-height: 1.5;
     padding: 0 20px;
 }
 
@@ -97,4 +112,75 @@ h1 span {
     display: inline-block;
 }
 
+@media (max-width: 1024px) {
+    .feedback-container {
+        bottom: 5%;
+        height: 90dvh;
+    }
 
+    .feedback-info {
+        font-size: 1rem;
+        top: 3%;
+    }
+
+    .slider {
+        top: calc(8% + 30px);
+        height: 80dvh;
+    }
+
+    .card {
+        width: 70%;
+        height: 300px;
+    }
+
+    .copy h1 {
+        font-size: 1rem;
+        padding: 0 10px;
+    }
+
+    .copy p {
+        font-size: 0.9rem;
+        padding: 0 10px;
+    }
+}
+
+@media (max-width: 768px) {
+    .copy {
+        padding: 0 10px;
+        text-align: center;
+        word-wrap: break-word;
+        overflow-wrap: break-word;
+        white-space: normal;
+        max-height: 100%;
+        overflow: hidden;
+    }
+
+    .copy h1 {
+        font-size: clamp(0.8rem, 2.5vw, 1.2rem);
+        white-space: normal;
+        overflow-wrap: break-word;
+        text-overflow: ellipsis;
+    }
+
+    .copy p {
+        font-size: clamp(0.8rem, 2vw, 1rem);
+        line-height: 1.4;
+        white-space: normal;
+        overflow-wrap: break-word;
+        text-overflow: ellipsis;
+    }
+}
+
+@media (max-width: 480px) {
+    .copy {
+        padding: 0 5px;
+    }
+
+    .copy h1 {
+        font-size: clamp(0.8rem, 2vw, 1rem);
+    }
+
+    .copy p {
+        font-size: clamp(0.8rem, 1.8vw, 0.9rem);
+    }
+}

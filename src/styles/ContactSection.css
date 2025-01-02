@@ -28,8 +28,8 @@
     align-items: center;
     padding: 20px;
     overflow-y: auto;
-    scroll-behavior: smooth;
-    box-sizing: border-box;
+    overflow-x: hidden;
+    scroll-behavior: smooth
 
 }
 
@@ -38,7 +38,7 @@
     margin: 10px 0;
     text-align: center;
     color: whitesmoke;
-    padding: 10px 20px;
+
 }
 
 .contactTextContent h3 {
@@ -124,4 +124,91 @@ button:active {
 
 .result-message.error {
     color: #ff6666;
+}
+
+@media (max-width: 1024px) {
+    .contactMainContainer {
+        height: 100dvh; /* Adjust height for tablets */
+        align-items: flex-start; /* Keep alignment consistent */
+    }
+
+    .contactPortraitBox {
+        width: 80%; /* Increase box width for tablets */
+        height: 90%; /* Adjust box height for tablets */
+        padding: 15px; /* Adjust padding */
+    }
+
+    .contactTextContent h3 {
+        font-size: 1.8rem; /* Adjust heading size for tablets */
+        margin-bottom: 30px; /* Reduce margin for better spacing */
+    }
+
+    .message-area {
+        height: 10rem; /* Reduce textarea height */
+        font-size: 0.9rem; /* Slightly smaller font */
+    }
+
+    button {
+        width: 40%; /* Wider button for tablets */
+        font-size: 0.9rem; /* Adjust font size */
+    }
+}
+
+@media (max-width: 768px) {
+    .contactMainContainer {
+        height: 100dvh; /* Adjust height for mobiles */
+    }
+
+    .contactPortraitBox {
+        width: 95%; /* Further increase width */
+        height: 95%; /* Further adjust height */
+        padding: 10px; /* Less padding for smaller screens */
+    }
+
+    .contactTextContent h3 {
+        font-size: 1.6rem; /* Adjust heading size for mobiles */
+        margin-bottom: 20px; /* Reduce margin */
+    }
+
+    .message-area {
+        height: 8rem; /* Further reduce height */
+        font-size: 0.8rem; /* Adjust font size */
+    }
+
+    button {
+        width: 50%; /* Make button wider for smaller screens */
+        font-size: 0.8rem; /* Smaller font size */
+        padding: 0.5rem; /* Adjust padding */
+    }
+
+    .result-message {
+        font-size: 1rem; /* Slightly smaller text */
+    }
+}
+
+@media (max-width: 480px) {
+    .contactPortraitBox {
+        width: 95%; /* Maximize box width for very small screens */
+        height: 95%; /* Reduce box height further */
+    }
+
+    .contactTextContent h3 {
+        font-size: 1.4rem; /* Further adjust heading size */
+    }
+
+    .message-area {
+        height: 6rem; /* Minimize textarea height */
+        font-size: 0.9rem; /* Small font size for compact text */
+
+    }
+
+    button {
+        width: 60%; /* Wider button */
+        font-size: 1rem; /* Smaller font */
+        padding: 0.4rem; /* Adjust padding */
+    }
+
+    .result-message {
+        font-size: 0.9rem; /* Compact result message text */
+    }
 }

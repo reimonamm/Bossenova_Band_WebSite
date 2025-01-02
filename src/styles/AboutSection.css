@@ -178,6 +178,17 @@
     font-weight: bold;
     transform: translate(4rem, 100%);
 }
+@media (max-width: 768px) {
+    .aboutGalleryName p {
+        margin-bottom: 0.5rem;
+    }
+    .aboutGalleryName span {
+        bottom: -0.2rem;
+        transform: translate(3rem, 100%);
+        white-space: nowrap;
+        font-size: 1.1rem;
+    }
+}
 
 .aboutGalleryName span:before {
     content: "—";
@@ -230,16 +241,16 @@
 @media (max-width: 768px) {
     .aboutTextContent {
         margin: 10px 0;
-        padding: 5px; /* Add more padding for smaller screens */
-        text-align: center; /* Left-align for better readability on narrow screens */
+        padding: 5px;
+        text-align: center;
     }
 
     .aboutTextContent h2 {
-        font-size: 1.5rem; /* Adjust font size for smaller screens */
+        font-size: 1.5rem;
     }
 
     .aboutTextContent p {
-        font-size: 1.1rem; /* Slightly smaller font for paragraphs */
+        font-size: 1.1rem;
     }
 }
 
@@ -284,16 +295,16 @@
 /* Responsive Design */
 @media (max-width: 768px) {
     .aboutTrioImageContainer {
-        width: 100%; /* Allow full width on smaller screens */
-        max-width: 90%; /* Slight margin for spacing */
+        width: 100%;
+        max-width: 90%;
     }
 
     .aboutTrioSection h1 {
-        font-size: 1.5rem; /* Adjust heading size for smaller screens */
+        font-size: 1.5rem; /
     }
 
     .aboutTrioSection p {
-        font-size: 1.1rem; /* Smaller font size for readability */
+        font-size: 1.1rem;
     }
 }
 
