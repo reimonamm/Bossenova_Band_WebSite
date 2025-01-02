@@ -1,17 +1,20 @@
-import React, { useRef, useState, useEffect } from 'react';
-import { Canvas } from '@react-three/fiber';
-import {OrbitControls, PerspectiveCamera, useGLTF,} from '@react-three/drei';
-import { DepthOfField, EffectComposer, Vignette } from '@react-three/postprocessing';
-import CameraControls from './CameraControls';
-import gsap from 'gsap';
+import React, { useRef, useState, useEffect } from "react";
+import { Canvas } from "@react-three/fiber";
+import { OrbitControls, PerspectiveCamera, useGLTF } from "@react-three/drei";
+import {
+    DepthOfField,
+    EffectComposer,
+    Vignette,
+} from "@react-three/postprocessing";
+import CameraControls from "./CameraControls";
+import gsap from "gsap";
 import MenuSection from "../sections/MenuSection.jsx";
 import styles from "../styles/StageCanvas.module.css";
 
-
-
+import modelPath from "/src/assets/models/stage_final.glb";
 
 const StageModel = () => {
-    const gltf = useGLTF("/src/assets/models/stage_final.glb", true); // Path to Draco decoder
+    const gltf = useGLTF(modelPath, true); // Path to Draco decoder
     return <primitive object={gltf.scene} scale={1} />;
 };
 
@@ -21,7 +24,6 @@ const StageCanvas = ({ positions }) => {
     const [isButtonVisible, setIsButtonVisible] = useState(true);
     const [isMenuVisible, setIsMenuVisible] = useState(false);
 
-
     const orbitControlsRef = useRef();
     const [movementType, setMovementType] = useState("default");
 
@@ -30,7 +32,7 @@ const StageCanvas = ({ positions }) => {
         const target = orbitControlsRef.current.target;
         console.log("Camera Position: ", position);
         console.log("Camera Target: ", target);
-    }
+    };
 
     const [effectSettings, setEffectSettings] = useState({
         darkness: 220,
@@ -53,15 +55,14 @@ const StageCanvas = ({ positions }) => {
         }
     }, [currentIndex, positions]);
 
-
     //Effects Animation
     const handleButtonClick = () => {
-        animateEffects();  // Handles GSAP animation
-        hideUI();          // Handles UI state changes
-        moveCamera(1);     // Updates camera index to the next position
+        animateEffects(); // Handles GSAP animation
+        hideUI(); // Handles UI state changes
+        moveCamera(1); // Updates camera index to the next position
     };
 
-// 1. Animation logic
+    // 1. Animation logic
     const animateEffects = () => {
         const targetValues = {
             darkness: effectSettings.darkness,
@@ -84,27 +85,26 @@ const StageCanvas = ({ positions }) => {
                 }));
             },
             onComplete: () => {
-                setTimeout(() =>{
+                setTimeout(() => {
                     setIsMenuVisible(true);
-                },1700);
-
+                }, 1700);
             },
         });
     };
 
-// 2. UI state changes
+    // 2. UI state changes
     const hideUI = () => {
         setLogoVisible(false);
         setIsButtonVisible(false);
     };
 
-// 3. Camera movement
+    // 3. Camera movement
     const moveCamera = (index) => {
         // Update movementType based on the target position
         if (index === 1 && currentIndex === 0) {
-            setMovementType('default'); // Use default config for 0 → 1
+            setMovementType("default"); // Use default config for 0 → 1
         } else {
-            setMovementType('fast'); // Use fast config for other movements
+            setMovementType("fast"); // Use fast config for other movements
         }
         setCurrentIndex(index);
     };
@@ -113,11 +113,11 @@ const StageCanvas = ({ positions }) => {
         <>
             {logoVisible && (
                 <div className="logo-container">
-                    <img src="/BossenovaLogo.svg" alt="Bossenova Logo" className="logo"/>
+                    <img src="/BossenovaLogo.svg" alt="Bossenova Logo" className="logo" />
                 </div>
             )}
 
-            <Canvas style={{background: "#000"}}>
+            <Canvas style={{ background: "#000" }}>
                 <OrbitControls
                     ref={orbitControlsRef}
                     args={[cameraRef.current]} // Explicitly attach OrbitControls to your PerspectiveCamera
@@ -136,16 +136,22 @@ const StageCanvas = ({ positions }) => {
                     movementType={movementType}
                 />
 
-
-                <StageModel/>
+                <StageModel />
 
                 {/* Apply post-processing effects */}
                 <EffectComposer>
-                    <DepthOfField focusDistance={effectSettings.focusDistance} focalLength={effectSettings.focalLength}
-                                  bokehScale={effectSettings.bokehScale} height={480}/>
-                    <Vignette eskil={true} offset={0.1} darkness={effectSettings.darkness}/>
+                    <DepthOfField
+                        focusDistance={effectSettings.focusDistance}
+                        focalLength={effectSettings.focalLength}
+                        bokehScale={effectSettings.bokehScale}
+                        height={480}
+                    />
+                    <Vignette
+                        eskil={true}
+                        offset={0.1}
+                        darkness={effectSettings.darkness}
+                    />
                 </EffectComposer>
-
             </Canvas>
 
             <div className="wrap">
