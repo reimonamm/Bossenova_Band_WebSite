@@ -49,16 +49,17 @@
     cursor: pointer;
     padding: 0;
     outline: none;
+    width: unset;
 }
 
 .muteButton svg {
     width: 32px;
     height: 32px;
-    fill: #8a8484; /* Makes the icon grey */
+    fill: #8a8484;
     transition: transform 0.2s ease, fill 0.2s ease;
 }
 
 .muteButton:hover svg {
     transform: scale(1.1);
-    fill: #ffd700; /* Change to gold on hover */
+    fill: #ffd700;
 }
