@@ -207,11 +207,11 @@ input#toggle:checked ~ #show-menu .btn .closeBtn {
 }
 
 .backButton {
-    position: fixed;
+    position: absolute;
     bottom: 8%;
     left: 50%;
     transform: translateX(-50%);
-    z-index: 15;
+    z-index: 1001;
     width: 140px;
     height: 45px;
     font-family: 'Roboto', sans-serif;
@@ -254,4 +254,6 @@ input#toggle:checked ~ #show-menu .btn .closeBtn {
         font-size: 10px;
     }
 }
+
+
 

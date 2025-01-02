@@ -33,7 +33,7 @@
 
 
 .blogWrapper {
-    height: 100vh;
+    height: 100dvh;
     /*This part is important for centering*/
     display: grid;
     place-items: center;
